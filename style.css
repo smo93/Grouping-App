@@ -1,0 +1,4 @@
+body { background: #ddd; }
+hr { background: #efefef; border: none; height: 2px; width: 80%; }
+#main { background: #efefef; }
+#header { background: #09f; color: #efefef; text-align: center; }
