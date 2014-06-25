@@ -1,4 +1,12 @@
-body { background: #ddd; }
+body { background: #ddd; color: #222; }
 hr { background: #efefef; border: none; height: 2px; width: 80%; }
-#main { background: #efefef; }
-#header { background: #09f; color: #efefef; text-align: center; }
+a { color: #222; }
+a:hover { color: #333; }
+#main { background: #f5f5f5; }
+#header { background: #428bca; color: #efefef; text-align: center; }
+.student-block { background: #ddd; border: 5px solid #f5f5f5; height: 160px; }
+#filtering-options li { text-align: right; }
+.center { text-align: center; }
+.available { background: #54f146; }
+.unavailable { background: #ff3030; }
+//#groups-modal .modal-dialog { width: 900px; }
