@@ -1,15 +1,79 @@
 <!doctype html>
 <html>
     <head>
+        <meta charset="UTF-8">
+
         <title>Grouping app</title>
 
         <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="./style.css" />
     </head>
     <body>
+        <div id="main" class="container">
+            <div id="header" class="row">
+                <h2>Grouping app</h2>
+                <hr>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-3"></div>
+                <div id="filtering-options" class="col-xs-3 center">
+                    <h4>Filtering options</h4>
+                    <form action="">
+                        <ul class="list-inline">
+                            <li>
+                                Javascript:
+                                <ul class="list-unstyled">
+                                    <li>Early group: <input type="checkbox" id="early-javascript" /></li>
+                                    <li>Late group:  <input type="checkbox" id="late-javascript" /></li>
+                                </ul>
+                            </li>
+                            <li>
+                                Java:
+                                <ul class="list-unstyled">
+                                    <li>Early group: <input type="checkbox" id="early-java" /></li>
+                                    <li>Late group:  <input type="checkbox" id="late-java" /></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <input type="submit" value="Filter" action="" class="btn btn-primary" />
+                    </form>
+                </div>
+                <div class="col-xs-3 center">
+                    <h4>Grouping options</h4>
+                    <ul class="list-unstyled">
+                        <li><input type="text" id="group-size" placeholder="Groups size" class="form-control" /></li>
+                        <li>Available only: <input type="checkbox" id="group-available-only" /></li>
+                        <li><br /><button id="group-btn" class="btn btn-primary">Group</button></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="students-grid">
+
+            </div>
+
+            <div id="groups-modal" class="modal fade" area-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Groups:</h4>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <a id="save-groups" class="btn btn-primary" download="groups.json">Save groups as JSON file</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <script src="./bower_components/jquery/dist/jquery.js"></script>
         <script src="./bower_components/lodash/dist/lodash.js"></script>
+        <script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="./app.js"></script>
     </body>
 </html>
