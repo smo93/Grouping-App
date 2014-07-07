@@ -42,7 +42,7 @@
                 <div class="col-xs-3 center">
                     <h4>Grouping options</h4>
                     <ul class="list-unstyled">
-                        <li><input type="text" id="group-size" placeholder="Groups size" class="form-control" /></li>
+                        <li><input type="number" id="group-size" placeholder="Groups size" class="form-control" /></li>
                         <li><input type="checkbox" id="group-available-only">Available only</input></li>
                         <li><br /><button id="group-btn" class="btn btn-primary">Group</button></li>
                     </ul>
@@ -70,10 +70,33 @@
             </div>
         </div>
 
+        <script type='text/x-handlebars-template' id='student-block-template'>
+            <div id="{{id}}" class="col-xs-3 student-block" data-toggle="tooltip" data-placement="" title="Click to change status">
+                <div>
+                    <ul class="list-unstyled">
+                        <li>
+                            <h3>{{name}}</h3>
+                        </li>
+                        <li>
+                            <strong>Github:</strong><br /><a href="{{github}}">{{github}}</a>
+                        </li>
+                        <li>
+                            <strong>Courses:</strong>
+                            <ul class="list-inline">
+                                {{#each courses}}
+                                  <li>{{name}} - {{group}}</li>
+                                {{/each}}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </script>
 
         <script src="./bower_components/jquery/dist/jquery.js"></script>
         <script src="./bower_components/lodash/dist/lodash.js"></script>
         <script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="./bower_components/handlebars/handlebars.js"></script>
         <script src="./app.js"></script>
     </body>
 </html>
