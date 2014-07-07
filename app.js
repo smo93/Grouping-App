@@ -2,15 +2,17 @@ $(document).ready(function() {
     var students, filtered, groups,
         student_block = Handlebars.compile($('#student-block-template').html());
 
-    $('#group-available-only').on('change', function() {
-        var unavailableStudents = $('.unavailable');
+    function hideUnavailable() {
+       var unavailableStudents = $('.unavailable');
 
-        if($(this).is(':checked')) {
+        if($('#group-available-only').is(':checked')) {
             unavailableStudents.addClass('hidden');
         } else {
             unavailableStudents.removeClass('hidden');
-        }
-    });
+        } 
+    }
+
+    $('#group-available-only').on('change', hideUnavailable);
 
     var sorting_function = function(fst, snd) {
         if(fst.available && !snd.available) { return -1; }
@@ -107,6 +109,8 @@ $(document).ready(function() {
             filtered.sort(sorting_function);
             renderStudents(filtered);
         }
+        hideUnavailable();
+        console.log('hiding');
         return false;
     });
 
