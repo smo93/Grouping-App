@@ -1,15 +1,16 @@
 $(document).ready(function() {
     var students, filtered, groups,
-        student_block = _.template('<div id="<%= id %>" class="col-xs-3 student-block"><div><ul class="list-unstyled"><li><h3><%= name %></h3></li><li><strong>Github:</strong><br /><a href="<%= github %>"><%= github %></a></li><li><strong>Courses:</strong><ul class="list-inline"> <% _.forEach(courses, function(course) { %><li><%- course.name %> - <%- course.group %><% }); %></ul></li></ul></div></div>');
+        student_block = Handlebars.compile($('#student-block-template').html());
 
-    var idGenerator = (function() {
-        var count = 0;
+    $('#group-available-only').on('change', function() {
+        var unavailableStudents = $('.unavailable');
 
-        return (function() {
-            count += 1;
-            return count;
-        });
-    } ());
+        if($(this).is(':checked')) {
+            unavailableStudents.addClass('hidden');
+        } else {
+            unavailableStudents.removeClass('hidden');
+        }
+    });
 
     var sorting_function = function(fst, snd) {
         if(fst.available && !snd.available) { return -1; }
@@ -55,7 +56,7 @@ $(document).ready(function() {
     $.getJSON('https://hackbulgaria.com/api/students/', function(data) {
         students = data;
 
-        students = students.map(function(x) { x.id = idGenerator(); return x; })
+        students = students.map(function(x) { x.id = _.uniqueId(); return x; })
             .filter(function(x) { return x.name !== ''; });
         students.sort(sorting_function);
 
@@ -75,7 +76,8 @@ $(document).ready(function() {
             filtered.sort(sorting_function);
             renderStudents(filtered);
         } else if (!(js_e || js_l || j_e || j_l)) {
-            $('#students-grid').empty().append('<h4 align="center">You haven\'t selected a group!</h4>');
+            alert(['You haven\'t selected any groups!',
+                'The people from the last filtering will be shown.'].join('\n'));
         } else {
             filtered = [];
             filtered = students.filter(function(student) {
@@ -138,7 +140,7 @@ $(document).ready(function() {
 
         modal_body.empty().append(groups_table);
 
-        $('#save-groups').prop('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(groups)));
+        $('#save-groups').prop('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(groups)));
 
         modal.modal('show');
         return false;
@@ -182,3 +184,4 @@ $(document).ready(function() {
         return groups_ind;
     };
 });
+
